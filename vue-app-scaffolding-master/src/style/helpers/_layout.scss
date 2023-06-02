@@ -1,0 +1,28 @@
+@use '@topdesk/components-vue/utilities.scss' as ds;
+@use '../utilities/all.scss' as *;
+
+.has-layout-grid {
+	@include layout-grid;
+	grid-template-columns: 1fr;
+	justify-items: stretch;
+}
+
+/* scaffolding-disable unless keepExamples */
+// Helpers typically use !important because they only address one atomic aspect
+// And the rule has low specificity, so most other CSS rules would accidentally
+// override them otherwise. Other than this use case using !important is discouraged.
+@mixin is-fullsize-horizontal($padding, $padding-left: $padding, $padding-right: $padding) {
+	min-width: calc(100% + #{$padding-left} + #{$padding-right} - calc(2 * #{ds.$spacer-border})) !important;
+	margin-inline: calc(-1 * #{$padding-left} + #{ds.$spacer-border}) !important;
+}
+
+.is-fullsize-block-top {
+	@include is-fullsize-horizontal($padding: ds.$spacer-4x);
+	margin-top: calc(-1 * #{ds.$spacer-4x}) !important;
+}
+
+.is-fullsize-block-bottom {
+	@include is-fullsize-horizontal($padding: ds.$spacer-4x);
+	margin-bottom: calc(-1 * #{ds.$spacer-4x} + #{ds.$spacer-border}) !important;
+}
+/* scaffolding-enable */
